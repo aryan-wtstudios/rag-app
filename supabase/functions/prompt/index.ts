@@ -71,11 +71,19 @@ Deno.serve(async (req) => {
     match_threshold :0.20,
     match_count :2
  });
-   console.log(similarDocs);
+ const docs= await Promise.all(similarDocs.map(doc=> parseExpoDocs(doc.id)));
+ const docsBodies=docs.map(doc=>doc.body);
+ const contents=docsBodies.join("😃");
+
+
+ const filledPrompt= buildFullPrompt(query, contents);
+  console.log(filledPrompt);
+
+  const answer= await completion(filledPrompt)
+  console.log(answer);
 
   const data = {
-    message: query,
-    docs:similarDocs,
+    answer,
   };
 
   return new Response(
