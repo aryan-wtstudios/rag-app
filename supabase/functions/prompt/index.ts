@@ -83,7 +83,8 @@ Deno.serve(async (req) => {
   console.log(answer);
 
   const data = {
-    answer,
+    message:answer.message.content,
+    docs:similarDocs
   };
 
   return new Response(
