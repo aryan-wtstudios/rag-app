@@ -21,7 +21,7 @@ const parseExpoDocs= async (slug:string)=>{
 }
 
 const openai = new OpenAI({
-  apiKey:'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'
+  apiKey:''
 });
 
  const generateEmbeddings= async (input:string)=>{
